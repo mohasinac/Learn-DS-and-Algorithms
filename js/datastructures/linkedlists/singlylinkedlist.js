@@ -10,8 +10,19 @@ class SinglyLinkedList {
         this.head = null;
         this.size = 0;
     }
+    find(key){
+        let temp = this.head ;
+        let idx = -1;
+        while(temp){
+            idx +=1;
+            if(key == temp.data){
+                return idx;
+            }
+            temp = temp.next;
+        }
+        return idx;
+    }
     insert(data) {
-
         let sllNode = new SllNode(data);
         if (this.size === 0) {
             this.head = sllNode;
@@ -26,13 +37,13 @@ class SinglyLinkedList {
         this.size += 1;
     }
     insertAt(data, position) {
+        let sslNode = new SllNode(data);
         if (position == 0) {
             sslNode.next = this.head;
             this.head = sslNode;
         }
         else if (position < this.size) {
             let temp = this.head;
-            let sslNode = new SllNode(data);
             let pos = 0;
             while (temp && pos != position - 1) {
                 temp = temp.next;
@@ -100,3 +111,4 @@ sll.insertAt(0, 2);
 sll.deleteAt(5);
 sll.traverse();
 
+console.log(sll.find(5))
