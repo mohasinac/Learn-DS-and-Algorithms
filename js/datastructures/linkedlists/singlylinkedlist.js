@@ -10,6 +10,41 @@ class SinglyLinkedList {
         this.head = null;
         this.size = 0;
     }
+    checkLoop(){
+        let slow = this.head;
+        let fast = this.head;
+        while(slow && fast && fast.next){
+            slow = slow.next;
+            fast = fast.next.next;
+            if(slow == fast){
+                console.log(slow.data,fast.data)
+                this.removeLoop(slow )
+                return true;
+            }
+        }
+        return false;
+    }
+    removeLoop(loop_node){
+        let ptr1; 
+        let ptr2; 
+        ptr1 = this.head; 
+        while (1) { 
+            ptr2 = loop_node; 
+            while (ptr2.next != loop_node && ptr2.next != ptr1) 
+                ptr2 = ptr2.next;
+            if (ptr2.next == ptr1) 
+                break; 
+            ptr1 = ptr1.next; 
+        } 
+        ptr2.next = null;
+    }
+    createLoop(){
+        let temp = this.head;
+        while(temp && temp.next){
+            temp = temp.next;
+        }
+        temp.next = this.head;
+    }
     find(key){
         let temp = this.head ;
         let idx = -1;
@@ -112,3 +147,7 @@ sll.deleteAt(5);
 sll.traverse();
 
 console.log(sll.find(5))
+sll.createLoop();
+console.log(sll.checkLoop())
+sll.traverse();
+console.log(sll.checkLoop())
