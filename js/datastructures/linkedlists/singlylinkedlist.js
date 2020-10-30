@@ -76,6 +76,7 @@ class SinglyLinkedList {
         if (position == 0) {
             sslNode.next = this.head;
             this.head = sslNode;
+            this.size += 1;
         }
         else if (position < this.size) {
             let temp = this.head;
@@ -87,6 +88,7 @@ class SinglyLinkedList {
                 sslNode.next = temp.next;
                 temp.next = sslNode;
             }
+            this.size += 1;
         }
         else {
             console.log('error out of bounds');
@@ -107,6 +109,7 @@ class SinglyLinkedList {
             temp = temp.next;
         }
         temp.next = null;
+        this.size -= 1;
     }
     deleteAt(position) {
         let temp = this.head;
@@ -121,6 +124,7 @@ class SinglyLinkedList {
             }
             let result = temp.next;
             temp.next = temp.next.next;
+            this.size -= 1;
             return result;
         }
         else {
