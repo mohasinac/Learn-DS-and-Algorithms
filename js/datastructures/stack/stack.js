@@ -10,7 +10,14 @@ class Stack{
         this.stack = Array(capacity);
         this.top = -1;
     }
-
+    getTopElement(){
+        if(this.top > -1){
+            return this.stack[this.top];
+        }
+        else{
+            return null;
+        }
+    }
     push(element){
         if((this.size + 1 )<= this.capacity ){
             this.top++;
