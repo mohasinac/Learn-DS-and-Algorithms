@@ -1,3 +1,8 @@
+/*
+    Stack is First In Last Out 
+    Stack using an array
+    Stack can also be implemented by using a linked list by inserting at begining always and removing at the begining 
+*/
 class Stack{
     constructor(capacity){
         this.size = 0;
@@ -7,7 +12,6 @@ class Stack{
     }
 
     push(element){
-        console.log(this.stack)
         if((this.size + 1 )<= this.capacity ){
             this.top++;
             this.stack[this.top] = element;
@@ -15,6 +19,7 @@ class Stack{
         }
         else{
             console.log("Error- Stack Overflow")
+            return null;
         }
     }
     pop(){
@@ -23,9 +28,11 @@ class Stack{
             this.stack[this.top] = null;
             this.top--;
             this.size--;
+            return element;
         }
         else{
             console.log("Error- Stack Underflow")
+            return null;
         }
     }
     showStack(){
@@ -48,3 +55,40 @@ stack.push(1);
 stack.showStack();
 stack.pop()
 stack.showStack();
+
+/* Stack Applications  */
+//1. Paranthesis Check
+
+function getClosingBracket(bracket){
+    switch(bracket) {
+        case ')':
+            return '(';
+        case ']':
+            return '['
+        case '}':
+            return '{'
+        default :
+            return null;
+    }
+}
+function checkParenthesis(inputString){
+    let stack = new Stack(inputString.length);
+    for(i=0;i<inputString.length;i++){
+        if(inputString[i]==='(' || inputString[i]==='{' ||inputString[i]==='['){
+            stack.push(inputString[i]);
+        }
+        else if(inputString[i]===')' || inputString[i]==='}' || inputString[i]===']'){
+            let bracket = stack.pop();
+            //console.log(bracket , getClosingBracket(inputString[i]))
+            if(bracket != getClosingBracket(inputString[i])){
+                return false;
+            }
+        }
+    }
+    return stack.size === 0 ;
+}
+
+let testString1 = '(()[{}])' ;
+let testString2 = '{[{}]())}' ;
+console.log(checkParenthesis(testString1))
+console.log(checkParenthesis(testString2))
