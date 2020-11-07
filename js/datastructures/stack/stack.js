@@ -58,7 +58,12 @@ stack.showStack();
 
 /* Stack Applications  */
 //1. Paranthesis Check
-
+/*
+    when you see an opening bracket push it
+    when you see closing bracket pop and compare the the popped element and 
+    closing bracket and if they dont match then return false
+    if after traversing the sting if the stack is empty then the string is correctly parenthesised
+ */
 function getClosingBracket(bracket){
     switch(bracket) {
         case ')':
