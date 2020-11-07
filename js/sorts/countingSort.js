@@ -38,9 +38,8 @@ function countingSort(inputArr , k ){
     return result;
 }
 
-
-var testArr =  Array(5, 6, 3,3,3, 4, 2 , 2, 2,1, 8 ,7 , 7, 1);
-
-console.log(countingSort(testArr , 8));
+module.exports = {
+    countingSort
+}
 
 

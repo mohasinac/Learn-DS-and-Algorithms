@@ -45,6 +45,6 @@ function partition(inputArr , p , r){
     console.log(pivot,i,j)
     return i; 
 }
-var testArr =  Array(5, 6, 3, 4, 2, 8 , 7, 1);
-
-console.log(quickSort(testArr, 0 , testArr.length-1));
+module.exports = {
+    quickSort
+}

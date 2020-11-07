@@ -27,7 +27,6 @@ export function selectionSort(inputArr){
     }
     return inputArr;
 }
-
-var testArr =  Array(5, 6, 3, 4, 2, 8 , 7, 1);
-
-console.log(selectionSort(testArr));
+module.exports = {
+    selectionSort
+}

@@ -28,6 +28,6 @@ function mSort(array) {
     )
 }
 
-var testArr = [3, 1, 2];
-
-console.log(mSort(testArr));
+module.exports = {
+    mSort
+}

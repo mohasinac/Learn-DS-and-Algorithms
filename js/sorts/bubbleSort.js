@@ -29,7 +29,7 @@ function bubbleSort(inputArray){
     return inputArray;
 }
 
+module.exports = {
+    bubbleSort
+}
 
-var testArr =  Array(5, 6, 3, 4, 2, 8 , 7, 1);
-
-console.log(bubbleSort(testArr));

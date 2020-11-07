@@ -21,4 +21,6 @@ function InsertionSort(inputArr) {
     return inputArr;
 }
 
-console.log(InsertionSort([3,2,1]))
+module.exports = {
+    InsertionSort
+}
