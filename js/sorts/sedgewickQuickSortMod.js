@@ -5,6 +5,7 @@ const { partition } = require('./quickSort');
     To overcome this Segdewick solution is to sort only the smallest ones fist then move to larger ones
     the lines p=q+1 and 
     r = q-1 are there so that the while loop iterates atlest 2 times with each if condition executing once 
+    and breaks the recursion and max call stack is O(logn)
 */
 function sedgewickQS(inputArr, p, r) {
     while (p < r) {
