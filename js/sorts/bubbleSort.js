@@ -24,7 +24,7 @@ function bubbleSort(inputArray){
             }
         }
         lastIndex = lastIndex - 1
-        console.log(inputArray)
+        
     } while (swapped) ;
     return inputArray;
 }

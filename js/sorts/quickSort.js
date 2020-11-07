@@ -23,7 +23,7 @@ function quickSort(inputArr , p , r){
         q = partition(inputArr , p , r);
         quickSort(inputArr,p , q-1);
         quickSort(inputArr,q+1 , r);
-        console.log(inputArr)
+        //console.log(inputArr)
     }
     return inputArr;
 }
@@ -42,9 +42,10 @@ function partition(inputArr , p , r){
     temp = inputArr[p];
     inputArr[p] = inputArr[i];
     inputArr[i] = temp;
-    console.log(pivot,i,j)
+    //console.log(pivot,i,j)
     return i; 
 }
 module.exports = {
-    quickSort
+    quickSort,
+    partition
 }

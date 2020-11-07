@@ -14,7 +14,7 @@ function countingSort(inputArr , k ){
     result = []
     auxillary = []
     
-    console.log(result);
+    //console.log(result);
     //fill auxillary from 0 to k with 0
     for(i=0;i<=k;i++){
         auxillary.push(0);
@@ -23,11 +23,11 @@ function countingSort(inputArr , k ){
     for(i=0;i<inputArr.length;i++){
         auxillary[inputArr[i]] += 1 ;
     }
-    console.log(auxillary);
+    //console.log(auxillary);
     for(i=1;i<=k;i++){
         auxillary[i] = auxillary[i]+auxillary[i-1]
     }
-    console.log(auxillary)
+    //console.log(auxillary)
     for(i=inputArr.length-1;i>=0;i--){
         result[auxillary[inputArr[i]]-1] = inputArr[i]; // putting each element at its correct place
         auxillary[inputArr[i]] =auxillary[inputArr[i]] - 1;

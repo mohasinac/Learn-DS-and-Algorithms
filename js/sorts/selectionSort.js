@@ -8,7 +8,7 @@
     advantage 
     swaps are only only once
 8*/
-export function selectionSort(inputArr){
+function selectionSort(inputArr){
     j = 0;
     n = inputArr.length;
     for(j=0; j < n ; j++){
@@ -23,7 +23,7 @@ export function selectionSort(inputArr){
             inputArr[j] = inputArr[iMin];
             inputArr[iMin] = temp;
         }
-        console.log(inputArr);
+        //console.log(inputArr);
     }
     return inputArr;
 }
