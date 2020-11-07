@@ -1,5 +1,5 @@
 // compare the arrays item by item and return the concatenated result
-function merge(left, right) {
+export function merge(left, right) {
     let result = []
     let leftIndex = 0
     let rightIndex = 0

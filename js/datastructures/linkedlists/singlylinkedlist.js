@@ -84,11 +84,12 @@ class SinglyLinkedList {
             while (temp && pos != position - 1) {
                 temp = temp.next;
                 pos++;
-
+            }
+            if(temp){
                 sslNode.next = temp.next;
                 temp.next = sslNode;
+                this.size += 1;
             }
-            this.size += 1;
         }
         else {
             console.log('error out of bounds');
@@ -149,7 +150,6 @@ sll.insertAt(0, 0);
 sll.insertAt(0, 2);
 sll.deleteAt(5);
 sll.traverse();
-
 console.log(sll.find(5))
 sll.createLoop();
 console.log(sll.checkLoop())

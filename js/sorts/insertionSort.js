@@ -22,4 +22,3 @@ function InsertionSort(inputArr) {
 }
 
 console.log(InsertionSort([3,2,1]))
-exports.InsertionSort;
