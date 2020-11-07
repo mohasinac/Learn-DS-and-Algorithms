@@ -9,4 +9,7 @@ function factorial(n,ans){
     return factorial(n-1,ans*n)
 }
 
-console.log(factorial(10,1))
+
+module.exports = {
+    factorial
+}

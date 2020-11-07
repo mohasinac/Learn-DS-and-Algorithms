@@ -19,5 +19,7 @@ function printFibonnaci(n){
     console.log(result);
 }
 
-console.log(fibonacci(10))
-console.log(printFibonnaci(10))
+module.exports = {
+    fibonacci,
+    printFibonnaci
+}

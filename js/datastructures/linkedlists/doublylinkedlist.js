@@ -94,3 +94,8 @@ class DoublyLinkedList {
         }
     }
 }
+
+module.exports = {
+    DllNode,
+    DoublyLinkedList
+}
