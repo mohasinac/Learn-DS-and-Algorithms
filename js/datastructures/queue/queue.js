@@ -26,9 +26,11 @@ class Queue {
             this.size++;
         }
         else{
-            this.rear++;
-            this.queue[this.rear] = data;
-            this.size++;
+            if(this.rear + 1 < this.capacity){ 
+                this.rear++;
+                this.queue[this.rear] = data;
+                this.size++;
+            }
         }
     }
 
@@ -40,6 +42,7 @@ class Queue {
         }
         else{
             let result = this.queue[this.front];
+            this.queue[this.front] = null;
             this.front++;
             this.size--;
             return result;
