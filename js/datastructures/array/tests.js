@@ -1,8 +1,20 @@
 const {JsArray} = require('./array');
 
-let array = new JsArray(2,3);
-let t1 = array.getRowMajor(1,2);
-array.setRowMajor(5,1,2);
-let t3= array.getRowMajor(1,2);
+let rowArray = new JsArray(2,3);
+for(let i=0;i<2;i++){
+    for(let j=0;j<3;j++){
+        rowArray.setRowMajor(`${i},${j}`,i,j)
+    }
+}
+console.log(rowArray.show());
 
-console.log(t1,t3);
+
+let colArray = new JsArray(2,3);
+for(let i=0;i<2;i++){
+    for(let j=0;j<3;j++){
+        colArray.setColMajor(`${i},${j}`,i,j)
+    }
+}
+console.log(colArray.show())
+
+console.log(rowArray.getRowMajor(1,2)==colArray.getRowMajor(1,2))
