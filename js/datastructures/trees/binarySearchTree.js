@@ -252,6 +252,23 @@ class BinarySearchTree{
         }
         return depth(node,0);
     }
+
+    mirror(){
+        function mirror(root){
+            let mirrorRoot = new BinaryTreeNode(root.data);
+            if(root.left || root.right){
+                if(root.left){
+                    mirrorRoot.right = mirror(root.left);
+                }
+                if(root.right){
+                    mirrorRoot.left =  mirror(root.right);
+                }
+            }
+            return mirrorRoot;
+        }
+        let mirrorRoot = mirror(this.root)
+        return mirrorRoot;
+    }
 }
 
 let bst = new BinarySearchTree();
@@ -263,6 +280,9 @@ bst.insert(9);
 bst.insert(6);
 console.log(bst.search(1));
 
+console.log(bst.root ,'og')
+console.log(bst.mirror(),'dup');
+
 console.log(bst.min())
 console.log(bst.max())
 console.log(bst.inOrder())
@@ -273,7 +293,6 @@ console.log(bst.preOrder())
 console.log(bst.delete(9))
 console.log(bst.preOrder())
 console.log(bst.depth());
-
 module.exports = {
     BinarySearchTree ,
     BinaryTreeNode
