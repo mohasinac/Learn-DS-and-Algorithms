@@ -46,19 +46,33 @@ class BinarySearchTree{
     }
 
     search(key){
+        let parent = null;
+        let left = false;
         let temp = this.root;
         while(temp){
-            if(key == temp.data){
-                return temp;
+            if(temp.data == key){
+                return {
+                    parent,
+                    node : temp,
+                    left,
+                }
             }
-            else if(key < temp.data){
+            else if(temp.data > key){
+                parent = temp;
+                left = true;
                 temp = temp.left;
             }
             else{
+                parent = temp;
+                left = false;
                 temp = temp.right;
             }
         }
-        return -1;
+        return {
+            node:null,
+            parent:null,
+            left : false,
+        }
     }
 
     min(){
@@ -90,6 +104,7 @@ class BinarySearchTree{
     //Traversal
     //left-root-right
     //always sorted order cannot find root
+    //infix expr
     inOrder(){
         let order = [];
         function inorderTraversal(root){
@@ -104,6 +119,7 @@ class BinarySearchTree{
     }
     //root,left,right 
     //first is root always
+    //prefix 
     preOrder(){
         let order =[];
         function preOrderTraversal(root){
@@ -119,6 +135,7 @@ class BinarySearchTree{
 
     //last item is always root
     //left,right,root
+    //postfix expr
     postOrder(){
         let order = [];
         function postOrderTraversal(root){
@@ -130,6 +147,87 @@ class BinarySearchTree{
         }
         postOrderTraversal(this.root);
         return order;
+    }
+
+    //delete has 3 case
+    //when there are no children -> just delete
+    //when there are one children -> choose the only child
+    //when there are 2 children -> replace the node with the min node in right sub tree
+    delete(data){
+        let minParent = null;
+        function min(root){
+            let temp = root;
+            while(temp){
+                if(temp.left){
+                    minParent = temp;
+                    temp = temp.left;
+                }
+                else{
+                    break;
+                }
+            }
+            return temp;
+        }
+
+        let { parent , left , node } = this.search(data);
+        if(node){
+            if(node.left == null && node.right == null){
+                //case 1 no child just delete
+                if(parent){
+                    if(left){
+                        parent.left = null;
+                    }
+                    else{
+                        parent.right = null;
+                    }
+                }
+                else{
+                    node = null;
+                }
+            }
+            else if( node.left == null || node.right == null){
+                //case 2 : 1 child , replace with child
+                let newNode = null;
+                if(node.left){
+                    newNode = node.left;
+                }
+                else{
+                    newNode = node.right;
+                }
+                if(left){
+                    parent.left = newNode;
+                }
+                else{
+                    parent.right = newNode;
+                }
+            }
+            else {
+                //case 3 : 2 children , replace with next inorder node
+                //min parent is to get the parent of the minimum node and we node it woulde b always at the left
+                //side
+                let minNode = min(node.right);
+                if(minParent){
+                    minParent.left = null;
+                }
+                minNode.left = node.left;
+                minNode.right = node.right;
+                if(parent){
+                    if(left){
+                        parent.left = minNode;
+                    }
+                    else{
+                        parent.right = minNode;
+                    }
+                }
+                else{
+                    this.root = minNode;
+                }              
+            }
+        }
+        else{
+            return 'not present in tree!'
+        }
+        return 'deleted!' 
     }
 }
 
@@ -147,6 +245,10 @@ console.log(bst.max())
 console.log(bst.inOrder())
 console.log(bst.preOrder())
 console.log(bst.postOrder())
+console.log(bst.delete(5))
+console.log(bst.preOrder())
+console.log(bst.delete(9))
+console.log(bst.preOrder())
 module.exports = {
     BinarySearchTree ,
     BinaryTreeNode
