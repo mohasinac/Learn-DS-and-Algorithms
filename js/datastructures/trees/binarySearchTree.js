@@ -60,6 +60,32 @@ class BinarySearchTree{
         }
         return -1;
     }
+
+    min(){
+        let temp = this.root;
+        while(temp){
+            if(temp.left){
+                temp= temp.left;
+            }
+            else{
+                break;
+            }
+        }
+        return (temp && temp.data) || 'Tree Empty';
+    }
+    
+    max(){
+        let temp = this.root;
+        while(temp){
+            if(temp.right){
+                temp= temp.right;
+            }
+            else{
+                break;
+            }
+        }
+        return (temp && temp.data) || 'Tree Empty';
+    }
 }
 
 let bst = new BinarySearchTree();
@@ -71,6 +97,8 @@ bst.insert(9);
 bst.insert(6);
 console.log(bst.search(1));
 
+console.log(bst.min())
+console.log(bst.max())
 module.exports = {
     BinarySearchTree ,
     BinaryTreeNode

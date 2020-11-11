@@ -48,6 +48,31 @@ class BSTArray{
         }
         return -1;
     }
+    min(){
+        let pos = 0;
+        while(this.tree[pos]){
+            if(this.tree[2*pos+1]){
+                pos= 2*pos +1
+            }
+            else{
+                break;
+            }
+        }
+        return this.tree[pos] || 'Tree Empty'
+    }
+    max(){
+        let pos = 0;
+        while(this.tree[pos]){
+            if(this.tree[2*pos+2]){
+                pos= 2*pos +2
+            }
+            else{
+                break;
+            }
+        }
+        return this.tree[pos] || 'Tree Empty'
+    }
+    
 }
 
 module.exports = {
@@ -63,3 +88,5 @@ bst.insert(9);
 bst.insert(9);
 bst.insert(6);
 console.log(bst.search(1));
+console.log(bst.min())
+console.log(bst.max())
