@@ -33,6 +33,7 @@ class BSTArray{
         }
         this.size++;
     }
+
     search(key){
         let pos = 0;
         while(this.tree[pos]){
@@ -72,6 +73,51 @@ class BSTArray{
         }
         return this.tree[pos] || 'Tree Empty'
     }
+
+    //traversals
+    //left,root,right
+    inOrder(){
+        let order =[];
+        let pos = 0;
+        let tree= this.tree;
+        function inOrderTraversal(pos){
+            if(tree[pos]){
+                inOrderTraversal(2*pos+1);
+                order.push(tree[pos]);
+                inOrderTraversal(2*pos+2);
+            }
+        }
+        inOrderTraversal(pos);
+        return order;
+    }
+    //root,left,right
+    preOrder(){
+        let order =[];let pos = 0;
+        let tree= this.tree;
+        function preOrderTraversal(pos){
+            if(tree[pos]){
+                order.push(tree[pos]);
+                preOrderTraversal(2*pos+1);
+                preOrderTraversal(2*pos+2);
+            }
+        }
+        preOrderTraversal(pos);
+        return order;
+    }
+    //left,right,root
+    postOrder(){
+        let order =[];let pos = 0;
+        let tree= this.tree;
+        function postOrderTraversal(pos){
+            if(tree[pos]){
+                postOrderTraversal(2*pos+1);
+                postOrderTraversal(2*pos+2);
+                order.push(tree[pos]);
+            }
+        }
+        postOrderTraversal(pos);
+        return order;
+    }
     
 }
 
@@ -90,3 +136,6 @@ bst.insert(6);
 console.log(bst.search(1));
 console.log(bst.min())
 console.log(bst.max())
+console.log(bst.inOrder())
+console.log(bst.preOrder())
+console.log(bst.postOrder())
