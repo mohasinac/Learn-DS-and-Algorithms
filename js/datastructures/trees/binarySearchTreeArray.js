@@ -36,18 +36,31 @@ class BSTArray{
 
     search(key){
         let pos = 0;
+        let parentPos = null;
+        let left = null;
         while(this.tree[pos]){
             if(key==this.tree[pos]){
-                return pos;
+                return { 
+                    pos,
+                    left,
+                    parentPos
+                };
             }
             else if( key < this.tree[pos]){
+                parentPos = pos;
+                left = true;
                 pos = 2*pos + 1;
             }
             else{
+                parentPos =pos;
+                left = false;
                 pos = 2*pos+2;
             }
         }
-        return -1;
+        return {
+            pos = -1,
+            parentPos = null;
+        };
     }
     min(){
         let pos = 0;
@@ -118,7 +131,6 @@ class BSTArray{
         postOrderTraversal(pos);
         return order;
     }
-    
 }
 
 module.exports = {
