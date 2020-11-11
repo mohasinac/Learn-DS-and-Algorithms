@@ -227,7 +227,30 @@ class BinarySearchTree{
         else{
             return 'not present in tree!'
         }
+        this.size--;
         return 'deleted!' 
+    }
+
+    depth(){
+        let node = this.root;
+        function max(a,b){
+            return a>b? a : b;
+        }
+        function depth(root,d){
+            if(root){
+                let dR = d;
+                let dL = d;
+                if(root.left){
+                    dL = depth(root.left,d+1);
+                }
+                if(root.right){
+                    dR = depth(root.right,d+1);
+                }
+                return max(dR,dL)
+            }
+            return d;
+        }
+        return depth(node,0);
     }
 }
 
@@ -249,6 +272,8 @@ console.log(bst.delete(5))
 console.log(bst.preOrder())
 console.log(bst.delete(9))
 console.log(bst.preOrder())
+console.log(bst.depth());
+
 module.exports = {
     BinarySearchTree ,
     BinaryTreeNode
