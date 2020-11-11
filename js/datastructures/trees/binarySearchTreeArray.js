@@ -31,8 +31,22 @@ class BSTArray{
         else{
             this.tree[pos]=data;
         }
-        console.log(this.tree);
         this.size++;
+    }
+    search(key){
+        let pos = 0;
+        while(this.tree[pos]){
+            if(key==this.tree[pos]){
+                return pos;
+            }
+            else if( key < this.tree[pos]){
+                pos = 2*pos + 1;
+            }
+            else{
+                pos = 2*pos+2;
+            }
+        }
+        return -1;
     }
 }
 
@@ -48,3 +62,4 @@ bst.insert(1);
 bst.insert(9);
 bst.insert(9);
 bst.insert(6);
+console.log(bst.search(1));

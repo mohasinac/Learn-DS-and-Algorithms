@@ -11,6 +11,8 @@ class BinarySearchTree{
         this.root = null;
         this.size = 0;
     }
+
+
     insert(data){
         let node = new BinaryTreeNode(data);
         if(this.root){
@@ -42,6 +44,22 @@ class BinarySearchTree{
         }
         this.size++;        
     }
+
+    search(key){
+        let temp = this.root;
+        while(temp){
+            if(key == temp.data){
+                return temp;
+            }
+            else if(key < temp.data){
+                temp = temp.left;
+            }
+            else{
+                temp = temp.right;
+            }
+        }
+        return -1;
+    }
 }
 
 let bst = new BinarySearchTree();
@@ -51,6 +69,7 @@ bst.insert(1);
 bst.insert(9);
 bst.insert(9);
 bst.insert(6);
+console.log(bst.search(1));
 
 module.exports = {
     BinarySearchTree ,
