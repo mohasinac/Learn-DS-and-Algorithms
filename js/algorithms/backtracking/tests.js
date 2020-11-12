@@ -45,3 +45,10 @@ if(solution){
 else{
     console.log('No solution exists!')
 }
+
+
+console.log('\n\n N-Queens')
+
+const {NQueens} = require('./nqueens')
+let nQueens = new NQueens(4,4,'Q' , 'X');
+console.log(nQueens.solve() && nQueens.board)
