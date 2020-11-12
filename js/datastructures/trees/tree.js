@@ -12,41 +12,57 @@ class Tree {
         this.k = maxChild;
     }
 
-    insertData(data) {
-        let newNode = new TreeNode(data);
-        if(this.root){
-            let temp = this.root;
-            if(temp.children.length < this.k){
-                temp.children.push(newNode);
+    insert(root,newNode){
+        let hasPlace = null;
+        for(let i=0;i< root.children.length;i++){
+            if(root.children[i].children.length< this.k){
+                hasPlace = true;
+                root.children[i].children.push(newNode);
+                return true;
             }
-            else{
-                for(let i=0;i < this.k;i++){
-                    let temp2 = temp.children[i];
-                    if(temp2.children.length < this.k){
-                        temp2.children.push(newNode);
-                        break;
-                    }
+        }
+        if(!hasPlace){
+            for(let i=0;i<root.children.length;i++){
+                hasPlace = this.insert(this.root.children[i],newNode);
+                if(hasPlace){
+                    return true;
                 }
             }
         }
         else{
-            this.root = newNode;
+            return false;
         }
     }
-    traversal(){
-        function traverse(root){
-            if(root){
-                console.log(root.data);
-                for(let i=0;i< root.children.length;i++){
+    insertData(data) {
+        if(this.root){
+            if(this.root.children.length < this.k){
+                this.root.children.push(new TreeNode(data))
+            }
+            else{
+                this.insert(this.root,new TreeNode(data));
+            }
+        }
+        else{
+            this.root = new TreeNode(data);
+        }
+    }
+
+    traversal() {
+        let order = [];
+        function traverse(root) {
+            if (root) {
+                order.push(root.data);
+                for (let i = 0; i < root.children.length; i++) {
                     traverse(root.children[i]);
                 }
             }
         }
         traverse(this.root);
+        return order;
     }
 }
 
-let kTree = new Tree(2);
+let kTree = new Tree(3);
 kTree.insertData(1);
 kTree.insertData(2);
 kTree.insertData(3);
@@ -54,4 +70,9 @@ kTree.insertData(4);
 kTree.insertData(5);
 kTree.insertData(6);
 kTree.insertData(7);
-kTree.traversal();
+kTree.insertData(8);
+kTree.insertData(9);
+kTree.insertData(10);
+kTree.insertData(11);
+console.log(kTree.traversal());
+console.log(kTree.root);
