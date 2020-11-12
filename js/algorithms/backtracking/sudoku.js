@@ -6,8 +6,14 @@
     1. each row has all 1-n without repeat
     2. each col has all 1-n without repeat
     3. each subgrid should have a 3*3 grid has 1-9 without repeat
+
+    we start at node 1 with our question grid
+    then we change the first encountered symbol from 1 to 9
+    whenever we change a symbol and if the new grid is safe to continue 
+    we change the next empty symbol until we have no empty symbols left
+    at any point if the state is not safe we go up one level i.e undo the change and increment the number by 1 
+    and repeat if still we don't get the answer we go up a level and do this process again
 */
-const { KTree , KTreeNode} = require('./../../datastructures/trees/ktree');
 class Sudoku {
     constructor(grid, emptySym) {
         this.grid = grid;
@@ -100,11 +106,12 @@ class Sudoku {
                 } 
                 else 
                 { 
-                    // replace it 
+                    // if none of the below trees work we restart with empty symbol
                     this.grid[row][col] = this.emptySym; 
                 } 
             } 
-        } 
+        }
+        //comes here if none of the value of num works
         return false; 
     }
 }
