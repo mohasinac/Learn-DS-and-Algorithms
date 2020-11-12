@@ -112,3 +112,11 @@ let postOrder = ['D','E','B','F','C','A'];
 
 console.log(TreeFromPreAndInOrder(inOrder,preOrder))
 console.log(TreeFromPostAndInOrder(inOrder,postOrder))
+
+//exp eval
+
+const { ExpressionTreeFromPostfix,EvalExpressionTree } = require('./expressioneval');
+
+let tree = ExpressionTreeFromPostfix('12+34-*')
+console.log(tree);
+console.log(EvalExpressionTree(tree))

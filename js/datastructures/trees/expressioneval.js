@@ -59,6 +59,7 @@ function EvalExpressionTree(treeRoot){
     return eval(treeRoot);
 }
 
-let tree = ExpressionTreeFromPostfix('12+34-*')
-console.log(tree);
-console.log(EvalExpressionTree(tree))
+module.exports = {
+    EvalExpressionTree,
+    ExpressionTreeFromPostfix
+}
