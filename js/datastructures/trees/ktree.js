@@ -36,14 +36,14 @@ class KTree {
     insertData(data) {
         if(this.root){
             if(this.root.children.length < this.k){
-                this.root.children.push(new TreeNode(data))
+                this.root.children.push(new KTreeNode(data))
             }
             else{
-                this.insert(this.root,new TreeNode(data));
+                this.insert(this.root,new KTreeNode(data));
             }
         }
         else{
-            this.root = new TreeNode(data);
+            this.root = new KTreeNode(data);
         }
     }
 
@@ -66,18 +66,3 @@ module.exports = {
     KTreeNode,
     KTree
 }
-
-let kTree = new KTree(3);
-kTree.insertData(1);
-kTree.insertData(2);
-kTree.insertData(3);
-kTree.insertData(4);
-kTree.insertData(5);
-kTree.insertData(6);
-kTree.insertData(7);
-kTree.insertData(8);
-kTree.insertData(9);
-kTree.insertData(10);
-kTree.insertData(11);
-console.log(kTree.traversal());
-console.log(kTree.root);

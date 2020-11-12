@@ -271,28 +271,6 @@ class BinarySearchTree{
     }
 }
 
-let bst = new BinarySearchTree();
-bst.insert(5);
-bst.insert(2);
-bst.insert(1);
-bst.insert(9);
-bst.insert(9);
-bst.insert(6);
-console.log(bst.search(1));
-
-console.log(bst.root ,'og')
-console.log(bst.mirror(),'dup');
-
-console.log(bst.min())
-console.log(bst.max())
-console.log(bst.inOrder())
-console.log(bst.preOrder())
-console.log(bst.postOrder())
-console.log(bst.delete(5))
-console.log(bst.preOrder())
-console.log(bst.delete(9))
-console.log(bst.preOrder())
-console.log(bst.height());
 module.exports = {
     BinarySearchTree ,
     BinaryTreeNode

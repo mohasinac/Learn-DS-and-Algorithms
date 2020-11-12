@@ -66,11 +66,6 @@ function CompleteBinaryTreeNodesByNodes(nodes){
     }
 }
 
-console.log(NodesOfFullBinTreeByHeight(2));
-console.log(PerfectBinTreeNodesByHeight(2));
-console.log(CompleteBinaryTreeNodesbyHeight(2));
-console.log(CompleteBinaryTreeNodesByNodes(10));
-
 module.exports = {
     NodesOfFullBinTreeByHeight,
     PerfectBinTreeNodesByHeight,

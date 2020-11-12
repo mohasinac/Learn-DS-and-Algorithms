@@ -58,8 +58,8 @@ class BSTArray{
             }
         }
         return {
-            pos = -1,
-            parentPos = null;
+            pos : -1,
+            parentPos : null
         };
     }
     min(){
@@ -119,7 +119,8 @@ class BSTArray{
     }
     //left,right,root
     postOrder(){
-        let order =[];let pos = 0;
+        let order =[];
+        let pos = 0;
         let tree= this.tree;
         function postOrderTraversal(pos){
             if(tree[pos]){
@@ -136,18 +137,3 @@ class BSTArray{
 module.exports = {
     BSTArray
 }
-
-
-let bst = new BSTArray();
-bst.insert(5);
-bst.insert(2);
-bst.insert(1);
-bst.insert(9);
-bst.insert(9);
-bst.insert(6);
-console.log(bst.search(1));
-console.log(bst.min())
-console.log(bst.max())
-console.log(bst.inOrder())
-console.log(bst.preOrder())
-console.log(bst.postOrder())
