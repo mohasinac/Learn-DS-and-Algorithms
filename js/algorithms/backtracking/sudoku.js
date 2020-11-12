@@ -7,60 +7,108 @@
     2. each col has all 1-n without repeat
     3. each subgrid should have a 3*3 grid has 1-9 without repeat
 */
+const { KTree , KTreeNode} = require('./../../datastructures/trees/ktree');
 class Sudoku {
     constructor(grid, emptySym) {
         this.grid = grid;
         this.emptySym = emptySym;
-        this.n = 9;
-        this.subGridSize = 3;
     }
     /*
         uses Trees
     */
+   isValid(num,row,col) { 
+        // Row has the unique (row-clash) 
+        for (let d = 0; d < this.grid.length; d++)  
+        { 
+            // Check if the number we are trying to 
+            // place is already present in 
+            // that row, return false; 
+            if (this.grid[row][d] == num) { 
+                return false; 
+            } 
+        } 
+
+        // Column has the unique numbers (column-clash) 
+        for (let r = 0; r < this.grid.length; r++)  
+        { 
+            // Check if the number  
+            // we are trying to 
+            // place is already present in 
+            // that column, return false; 
+            if (this.grid[r][col] == num)  
+            { 
+                return false; 
+            } 
+        } 
+        // Corresponding square has 
+        // unique number (box-clash) 
+        let sqrt = Math.sqrt(this.grid.length); 
+        let boxRowStart = row - row % sqrt; 
+        let boxColStart = col - col % sqrt; 
+
+        for (let r = boxRowStart; r < boxRowStart + sqrt; r++)  
+        { 
+            for (let d = boxColStart; d < boxColStart + sqrt; d++)  
+            { 
+                if (this.grid[r][d] == num)  
+                { 
+                    return false; 
+                } 
+            } 
+        } 
+        // if there is no clash, it's safe 
+        return true; 
+    }
+
     solve() {
-        //TODO : solved grid
-        let 
-        return this.grid;
-    }
-}
-
-let grid = [    [3, -1, 6, 5, -1, 8, 4, -1, -1],
-                [5, 2, -1, -1, -1, -1, -1, -1, -1],
-                [-1, 8, 7, -1, -1, -1, -1, 3, 1],
-                [-1, -1, 3, -1, 1, -1, -1, 8, -1],
-                [9, -1, -1, 8, 6, 3, -1, -1, 5],
-                [-1, 5, -1, -1, 9, -1, 6, -1, -1],
-                [1, 3, -1, -1, -1, -1, 2, 5, -1],
-                [-1, -1, -1, -1, -1, -1, -1, 7, 4],
-                [-1, -1, 5, 2, -1, 6, 3, -1, -1]
-            ];
-
-let answer = [  [3, 1, 6, 5, 7, 8, 4, 9, 2],
-                [5, 2, 9, 1, 3, 4, 7, 6, 8],
-                [4, 8, 7, 6, 2, 9, 5, 3, 1],
-                [2, 6, 3, 4, 1, 5, 9, 8, 7],
-                [9, 7, 4, 8, 6, 3, 1, 2, 5],
-                [8, 5, 1, 7, 9, 2, 6, 4, 3],
-                [1, 3, 8, 9, 4, 7, 2, 5, 6],
-                [6, 9, 2, 3, 5, 1, 8, 7, 4],
-                [7, 4, 5, 2, 8, 6, 3, 1, 9]
-                ];
-
-let sudoku = new Sudoku(grid, -1);
-let solution = sudoku.solve();
-let correct = true;
-for (i = 0; i < 9; i++) {
-    for (j = 0; j < 9;j++) {
-        if(answer[i][j]!=solution[i][j]){
-            correct = false;
-            break;
+        let row = -1; 
+        let col = -1; 
+        let isEmpty = true; 
+        for (let i = 0; i < this.grid.length; i++)  
+        { 
+            for (let j = 0; j < this.grid[i].length; j++)  
+            { 
+                if (this.grid[i][j] == this.emptySym)  
+                { 
+                    row = i; 
+                    col = j; 
+                    // We still have some remaining 
+                    // missing values in Sudoku 
+                    isEmpty = false; 
+                    break; 
+                } 
+            } 
+            if (!isEmpty) { 
+                break; 
+            } 
         }
-        if(!correct){break};
+        // No empty space left 
+        if (isEmpty)  
+        { 
+            return this.grid; 
+        } 
+  
+        // Else for each-row backtrack 
+        for (let num = 1; num <= this.grid.length; num++)  
+        { 
+            if (this.isValid(num, row, col))  
+            { 
+                this.grid[row][col] = num; 
+                if (this.solve())  
+                { 
+                    return this.grid; 
+                } 
+                else 
+                { 
+                    // replace it 
+                    this.grid[row][col] = this.emptySym; 
+                } 
+            } 
+        } 
+        return false; 
     }
 }
-if(correct){
-    console.log('Correct Answer!')
-}
-else{
-    console.log('Wrong Answer!')
+
+module.exports = {
+    Sudoku
 }
