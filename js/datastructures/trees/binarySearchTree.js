@@ -231,26 +231,26 @@ class BinarySearchTree{
         return 'deleted!' 
     }
 
-    depth(){
+    height(){
         let node = this.root;
         function max(a,b){
             return a>b? a : b;
         }
-        function depth(root,d){
+        function height(root,d){
             if(root){
                 let dR = d;
                 let dL = d;
                 if(root.left){
-                    dL = depth(root.left,d+1);
+                    dL = height(root.left,d+1);
                 }
                 if(root.right){
-                    dR = depth(root.right,d+1);
+                    dR = height(root.right,d+1);
                 }
                 return max(dR,dL)
             }
             return d;
         }
-        return depth(node,0);
+        return height(node,0);
     }
 
     mirror(){
@@ -292,7 +292,7 @@ console.log(bst.delete(5))
 console.log(bst.preOrder())
 console.log(bst.delete(9))
 console.log(bst.preOrder())
-console.log(bst.depth());
+console.log(bst.height());
 module.exports = {
     BinarySearchTree ,
     BinaryTreeNode
