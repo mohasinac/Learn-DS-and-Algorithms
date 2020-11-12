@@ -32,11 +32,6 @@ class BinaryTree {
     }
 }
 
-let bt = new BinaryTree();
-bt.insert(1);
-bt.insert(2);
-bt.insert(3);
-bt.insert(4);
-bt.insert(5);
-bt.insert(6);
-console.log(bt.root);
+module.exports = {
+    BinaryTree
+}

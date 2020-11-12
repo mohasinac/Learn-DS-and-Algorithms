@@ -7,6 +7,7 @@ const {
     CompleteBinaryTreeNodesbyHeight,
     CompleteBinaryTreeNodesByNodes} =require('./binarytreeprops');
 const {KTree} =require('./ktree');
+const { BinaryTree} = require('./binaryTree');
 const {HeapTree} =require('./heaptree');
 const {AVLTree} =require('./avltree');
 
@@ -85,3 +86,29 @@ console.log(bstArr.max())
 console.log(bstArr.inOrder())
 console.log(bstArr.preOrder())
 console.log(bstArr.postOrder())
+
+
+//Bin Tree
+
+let bt = new BinaryTree();
+bt.insert(1);
+bt.insert(2);
+bt.insert(3);
+bt.insert(4);
+bt.insert(5);
+bt.insert(6);
+console.log(bt.root);
+
+
+const {
+    TreeFromPreAndInOrder,
+    TreeFromPostAndInOrder
+}= require('./treetraversals');
+
+
+let inOrder = ['D', 'B', 'E', 'A', 'F', 'C'];
+let preOrder = ['A', 'B', 'D', 'E', 'C', 'F'];
+let postOrder = ['D','E','B','F','C','A'];
+
+console.log(TreeFromPreAndInOrder(inOrder,preOrder))
+console.log(TreeFromPostAndInOrder(inOrder,postOrder))
