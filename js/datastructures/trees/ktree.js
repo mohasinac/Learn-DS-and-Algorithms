@@ -12,7 +12,7 @@ class KTree {
         this.k = maxChild;
     }
 
-    insert(root,newNode){
+    insertutil(root,newNode){
         let hasPlace = null;
         for(let i=0;i< root.children.length;i++){
             if(root.children[i].children.length< this.k){
@@ -23,7 +23,7 @@ class KTree {
         }
         if(!hasPlace){
             for(let i=0;i<root.children.length;i++){
-                hasPlace = this.insert(this.root.children[i],newNode);
+                hasPlace = this.insertutil(this.root.children[i],newNode);
                 if(hasPlace){
                     return true;
                 }
@@ -39,13 +39,49 @@ class KTree {
                 this.root.children.push(new KTreeNode(data))
             }
             else{
-                this.insert(this.root,new KTreeNode(data));
+                this.insertutil(this.root,new KTreeNode(data));
             }
         }
         else{
             this.root = new KTreeNode(data);
         }
     }
+
+    insert(data){
+        if (this.root == null) {
+            this.root = new KTreeNode(data);
+            return;
+        }
+        else{
+            let q = [];
+            q.push(this.root);
+            while (q.length>0) {
+                let temp = q[0];
+                q=q.filter((i,index)=>index!=0);
+                let done = false;
+                if(temp.children.length < this.k){
+                    temp.children.push(new KTreeNode(data));
+                    break;
+                }
+                else{
+                    for(let i=0;i<temp.children.length;i++){
+                        if(temp.children[i]==null){
+                            temp.children[i] = new KTreeNode(data);
+                            done = true;
+                            break;
+                        }
+                        else{
+                            q.push(temp.children[i]);
+                        }
+                    }
+                    if(done){
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
 
     traversal() {
         let order = [];

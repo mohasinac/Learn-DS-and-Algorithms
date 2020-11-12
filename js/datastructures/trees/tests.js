@@ -50,6 +50,22 @@ console.log(kTree.traversal());
 console.log(kTree.root);
 
 
+kTree = new KTree(3);
+kTree.insert(1);
+kTree.insert(2);
+kTree.insert(3);
+kTree.insert(4);
+kTree.insert(5);
+kTree.insert(6);
+kTree.insert(7);
+kTree.insert(8);
+kTree.insert(9);
+kTree.insert(10);
+kTree.insert(11);
+console.log(kTree.traversal());
+console.log(kTree.root);
+
+
 console.log(NodesOfFullBinTreeByHeight(2));
 console.log(PerfectBinTreeNodesByHeight(2));
 console.log(CompleteBinaryTreeNodesbyHeight(2));
