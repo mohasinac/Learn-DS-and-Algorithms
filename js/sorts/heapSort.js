@@ -1,4 +1,6 @@
 
+//this guys time complexity is always O(logn)
+//because we go towards a single branch instead both when it would have been O(n)
 function heapify(arr, n, i) {
     let largest = i; // Initialize largest as root 
     let l = 2 * i + 1; // left = 2*i + 1 
@@ -22,6 +24,12 @@ function heapify(arr, n, i) {
         heapify(arr, n, largest);
     }
 }
+
+
+
+//this guys time complexity is O(nlogn)
+// n for the loop and logn for calling heapify
+//also building the heaps cost around O(n)
 function HeapSort(arr) {
     let n = arr.length;
     // Build heap (rearrange array)  this step is most important and always build heap not just call 
