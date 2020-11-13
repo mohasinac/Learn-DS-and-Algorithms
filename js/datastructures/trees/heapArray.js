@@ -1,12 +1,12 @@
-function Heapify(arr , pos){
+function Heapify(arr ,n, pos){
     if(arr[pos]){
         let left = 2*pos+1;
         let right = 2*pos+2;
         let largest = pos;
-        if(arr[left] && arr[left] > arr[largest]){
+        if(left < n && arr[left] && arr[left] > arr[largest]){
             largest = left;
         }
-        if(arr[right] && arr[right] > arr[largest]){
+        if(right<n && arr[right] && arr[right] > arr[largest]){
             largest = right;
         }
         if(largest != pos){
@@ -14,10 +14,10 @@ function Heapify(arr , pos){
             temp = arr[pos];
             arr[pos] = arr[largest];
             arr[largest] = temp;
+            console.log(arr, 'heapufy')
             Heapify(largest);
         }
     }
-
 }
 
 const { BTreeArray } = require('./binaryTreeArray');
@@ -31,7 +31,7 @@ class HeapArray{
     add(data){
         this.heap.insert(data);
         this.build();
-        console.log(this.heap.tree)
+        //console.log(this.heap.tree)
     }
 
     build(){
@@ -40,7 +40,7 @@ class HeapArray{
         function buildHeap(heap){
             //as n/2 are only internal nodes
             for(let i= Math.floor((heap.length -1) /2); i>=0; i--){
-                heapify(heap,i);
+                heapify(heap ,heap.length, i);
             }
         }
         buildHeap(heap);

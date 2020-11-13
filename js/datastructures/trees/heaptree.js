@@ -72,6 +72,17 @@ class Heap {
         this.build();
         console.log(this.heap);
     }
+
+    /**
+     The time complexity is O(2^h * number of times we call the heapify again)
+     as at every level the num of times we call heapify again gets lesser
+     i.e for leaves we have 0 
+        for second last level we have 1 times .. and for root we call it height times
+        so if we do the maths here 
+        the time complexity comes to O(2^h * 2)
+        and then we know that h = logn
+        so that means O(2^logn) => O(n)
+     */
     build(){
         let root = this.heap.root;
         let heapify = this.heapify;
