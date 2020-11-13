@@ -30,6 +30,7 @@ function heapify(arr, n, i) {
 //this guys time complexity is O(nlogn)
 // n for the loop and logn for calling heapify
 //also building the heaps cost around O(n)
+//best case is O(n) when all elemebts are same
 function HeapSort(arr) {
     let n = arr.length;
     // Build heap (rearrange array)  this step is most important and always build heap not just call 
