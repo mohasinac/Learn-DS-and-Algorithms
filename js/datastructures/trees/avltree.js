@@ -177,6 +177,12 @@ class AVLTree {
         return current;  
     }
 
+    /*
+        We delete as a standard BST delete operation 
+        then we update the involved nodes heights
+        followed by a balance check from bottom to up for these involved node
+        we deleted a node and the balance of its left tree is >=0 we do a right rotation
+    */
     deleteNode(root, data)  
     {  
         // STEP 1: PERFORM STANDARD BST DELETE  
