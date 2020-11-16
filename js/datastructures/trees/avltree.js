@@ -39,10 +39,12 @@ class AVLTree {
     pull the imbalanced root up and rotate the tree clockwise
     */
     leftRotate(x) {
+        
+        //console.log(x,'x');
         //we save the right child of node x at y this will replace x 
         //we save the left right of y as after the change y will not have place for it as y's left would be x
         let y = x.right;
-        let T2 = y.left;
+        let T2 = y && y.left || null;
 
         // Perform rotation 
         // set y's left child to be x
@@ -64,8 +66,9 @@ class AVLTree {
         vice versa
     */
     rightRotate(y) {
+        //console.log(y,'y');
         let x = y.left;
-        let T2 = x.right;
+        let T2 = x && x.right || null ;
 
         // Perform rotation 
         x.right = y;
@@ -97,27 +100,32 @@ class AVLTree {
         //console.log(node.height,'height',hl,hr);
         //actual AVL tree logic (balancing)
         let balance = this.getBalance(node);
-
         //there are 4 conditions for the node to rotate
         //case 1 : LL rotation (imbalance at left left tree of node )
         if (balance > 1 && node.left && data < node.left.data) {
+            console.log('LL',data)
             return this.rightRotate(node);
         }
 
         //case 2 : RR rotation (imblance at right's right tree of node)
         if (balance < -1 && node.right && data > node.right.data) {
+            console.log('RR',data)
             return this.leftRotate(node);
         }
 
         //case 3 :  LR roation (imbalance at lefts right tree of node)
         if (balance > 1 && node.left && data > node.left.data) {
+            console.log('LR',data,)
             node.left = this.leftRotate(node.left);
-            return this.rightRotate(node.right);
+            //console.log('LR2')
+            return this.rightRotate(node);
         }
 
         //case 4 : RL rotation (imbalance at right's left tree of node)
         if (balance < -1 && node.right && data < node.right.data) {
+            console.log('RL',data)
             node.right = this.rightRotate(node.right);
+            //console.log('RL2')
             return this.leftRotate(node);
         }
         return node;
@@ -125,7 +133,7 @@ class AVLTree {
     insert(data) {
         if (this.root) {
             this.root = this.insertUtil(this.root, data)
-            console.log(this.root, 'root')
+            //console.log(this.root, 'root')
         }
         else {
             this.root = new AVLTreeNode(data);
@@ -171,10 +179,17 @@ module.exports = {
 }
 
 let tree = new AVLTree();
-tree.insert(10);
-tree.insert(20);
+tree.insert(21);
+tree.insert(26);
 tree.insert(30);
-tree.insert(40);
-tree.insert(50);
-tree.insert(25);
+tree.insert(9);
+tree.insert(4);
+tree.insert(14);
+tree.insert(28);
+tree.insert(18);
+tree.insert(15);
+tree.insert(10);
+tree.insert(2);
+tree.insert(3);
+tree.insert(7);
 console.log(tree.preOrder())
