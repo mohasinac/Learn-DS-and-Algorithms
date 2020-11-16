@@ -82,6 +82,14 @@ class AVLTree {
         return x;
     }
 
+    //AVL tree insertion is all about bst property
+    /*
+        note : each rotation update node it is performed on
+        for an LL do a right-rotate of imbalanced node
+        for an RR do a left-rotate of imbalanced node
+        for an LR do a left-rotation on the imbalanced node's left node followed by a right-rotate on the imbalanced node
+        for an RL do a right-rotation of the imbalanced nodes' right node followed by a left-rotate on the imbalanced node
+    */
     insertUtil(node, data) {
         if (node == null) {
            return new AVLTreeNode(data)
