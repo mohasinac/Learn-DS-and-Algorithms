@@ -280,9 +280,10 @@ class AVLTree {
         return root;  
     }  
 
+    //delete options may go till the root and can have log(n) rotations
     delete(data){
         if(this.root){
-            return this.deleteNode(this.root,data);
+            this.root =  this.deleteNode(this.root,data);
         }
         else{
             return 'EMPTY TREE'
@@ -322,6 +323,14 @@ tree.insert(2);
 tree.insert(3);
 tree.insert(7);
 console.log(tree.preOrder())
+tree.delete(2);
+tree.delete(3);
+tree.delete(10);
 tree.delete(18);
+tree.delete(4);
+tree.delete(9);
+tree.delete(14);
+tree.delete(7);
 tree.delete(15);
+tree.delete(14);
 console.log(tree.preOrder())

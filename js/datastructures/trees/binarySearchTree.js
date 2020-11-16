@@ -269,6 +269,29 @@ class BinarySearchTree{
         let mirrorRoot = mirror(this.root)
         return mirrorRoot;
     }
+
+    levelOrder(){
+        let order = []
+        function  levelOrder(root) {
+            let queue = [];
+            queue.push(root);
+        while (queue.length > 0) 
+        {
+            let tempNode = queue[0];
+            queue = queue.filter( (i,index) => index != 0);
+            order.push(tempNode.data);
+            /*Enqueue left child */
+            if (tempNode.left != null) {
+                queue.push(tempNode.left);
+            }
+ 
+            /*Enqueue right child */
+            if (tempNode.right != null) {
+                queue.push(tempNode.right);
+            }
+        }
+        }
+    }
 }
 
 module.exports = {
