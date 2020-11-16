@@ -39,23 +39,29 @@ class AVLTree {
     pull the imbalanced root up and rotate the tree clockwise
     */
     leftRotate(x) {
+        //we save the right child of node x at y this will replace x 
+        //we save the left right of y as after the change y will not have place for it as y's left would be x
         let y = x.right;
         let T2 = y.left;
 
         // Perform rotation 
+        // set y's left child to be x
         y.left = x;
-        x.right = T2;
+        x.right = T2; // set the left child of y as right child of x 
 
         //  Update heights 
+        //calcuate the heights for x and y
         x.height = this.max(this.height(x.left), this.height(x.right)) + 1;
         y.height = this.max(this.height(y.left), this.height(y.right)) + 1;
 
-        // Return new root 
+        // Return y as the new root 
         return y;
     }
 
     /*
         single right rotation
+        similar to left rotation but in other direction i.e. each left is replaced by right and 
+        vice versa
     */
     rightRotate(y) {
         let x = y.left;
