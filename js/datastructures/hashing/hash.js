@@ -17,16 +17,21 @@ class Hashtable{
     }
     //O(1)
     insert(data){
-
+        let key = this.hashfunction(data);
+        if(!this.table[key]){
+            this.table[key] = data;
+        }
     }
 
     //O(1)
     delete(data){
-
+        let key = this.hashfunction(data);
+        this.table.splice(key,1)
     }
-    
-    //O(1)
-    search(key){
 
+    //O(1)
+    search(data){
+        let key = this.hashfunction(data);
+        return this.table[key]
     }
 }
