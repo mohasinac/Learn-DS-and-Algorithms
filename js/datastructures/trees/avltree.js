@@ -167,6 +167,121 @@ class AVLTree {
         return this.height(node.left) - this.height(node.right);
     }
 
+    minValueNode(node)  
+    {  
+        let current = node;  
+        //loop till we no longer have a left
+        while (current.left != null)  
+        current = current.left;  
+  
+        return current;  
+    }
+
+    deleteNode(root, data)  
+    {  
+        // STEP 1: PERFORM STANDARD BST DELETE  
+        if (root == null)  
+            return root;  
+  
+        // If the data to be deleted is smaller than  
+        // the root's data, then it lies in left subtree  
+        if (data < root.data)  
+            root.left = this.deleteNode(root.left, data);  
+  
+        // If the data to be deleted is greater than the  
+        // root's data, then it lies in right subtree  
+        else if (data > root.data)  
+            root.right = this.deleteNode(root.right, data);  
+  
+        // if data is same as root's data, then this is the node  
+        // to be deleted  
+        else
+        {  
+  
+            // node with only one child or no child  
+            if ((root.left == null) || (root.right == null))  
+            {  
+                let temp = null;  
+                if (temp == root.left)  
+                    temp = root.right;  
+                else
+                    temp = root.left;  
+  
+                // No child case  
+                if (temp == null)  
+                {  
+                    temp = root;  
+                    root = null;  
+                }  
+                else // One child case  
+                    root = temp; // Copy the contents of  the non-empty child  
+            }  
+            else
+            {  
+  
+                // node with two children: Get the in-order successor (smallest in the right subtree)  
+                let temp = this.minValueNode(root.right);  
+  
+                // Copy the inorder successor's data to this node  
+                root.data = temp.data;  
+  
+                // Delete the inorder successor  
+                root.right = this.deleteNode(root.right, temp.data);  
+            }  
+        }  
+  
+        // If the tree had only one node then return  
+        if (root == null)
+        {
+            return root;
+        }  
+  
+        // STEP 2: UPDATE HEIGHT OF THE CURRENT NODE  
+        root.height = this.max(this.height(root.left), this.height(root.right)) + 1;  
+  
+        // STEP 3: GET THE BALANCE FACTOR OF THIS NODE (to check whether  
+        // this node became unbalanced)  
+        let balance = this.getBalance(root);  
+  
+        // If this node becomes unbalanced, then there are 4 cases  
+        // Left Left Case  
+        if (balance > 1 && this.getBalance(root.left) >= 0){
+            console.log('LLD',root.data);
+            return rightRotate(root); 
+        } 
+  
+        // Left Right Case  
+        if (balance > 1 && this.getBalance(root.left) < 0)  
+        {
+            console.log('LRD',root.data);
+            root.left = this.leftRotate(root.left);  
+            return this.rightRotate(root);  
+        }  
+  
+        // Right Right Case  
+        if (balance < -1 && this.getBalance(root.right) <= 0){
+            console.log('RRD',root.data);
+            return this.leftRotate(root);  
+        }
+  
+        // Right Left Case  
+        if (balance < -1 && this.getBalance(root.right) > 0)  
+        {   console.log('RLD',root.data);
+            root.right = this.rightRotate(root.right);  
+            return this.leftRotate(root);  
+        }  
+  
+        return root;  
+    }  
+
+    delete(data){
+        if(this.root){
+            return this.deleteNode(this.root,data);
+        }
+        else{
+            return 'EMPTY TREE'
+        }
+    }
     preOrder() {
         let order = [];
         function preOrderTraversal(root) {
@@ -200,4 +315,7 @@ tree.insert(10);
 tree.insert(2);
 tree.insert(3);
 tree.insert(7);
+console.log(tree.preOrder())
+tree.delete(18);
+tree.delete(15);
 console.log(tree.preOrder())
