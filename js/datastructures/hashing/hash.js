@@ -25,3 +25,7 @@ class Hashtable{
         return this.table[key]
     }
 }
+
+module.exports = {
+    Hashtable
+}

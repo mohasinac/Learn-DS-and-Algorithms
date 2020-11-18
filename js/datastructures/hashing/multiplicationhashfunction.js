@@ -17,3 +17,7 @@ function MultiplicationHashFunction(key,m=64,A=0.618){
         return 'ERROR';
     }
 }
+
+module.exports = {
+    MultiplicationHashFunction
+}

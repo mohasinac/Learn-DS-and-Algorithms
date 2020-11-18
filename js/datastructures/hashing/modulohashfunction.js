@@ -5,3 +5,7 @@
 function ModuloHashFunction(key,m = 101){
     return key % m;
 }
+
+module.exports = {
+    ModuloHashFunction
+}
