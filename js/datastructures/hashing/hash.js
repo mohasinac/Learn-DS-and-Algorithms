@@ -1,19 +1,9 @@
-function ModuloHashFunction(data) {
-    return key;
-}
-function MultiplicationHashFunction(data) {
-    return key;
-}
-
 class Hashtable{
-    constructor(size, type='modulo'){
+    constructor(size, type='None'){
         this.table = new Array();
-        if(type === 'modulo'){
-            this.hashfunction = ModuloHashFunction; 
-        }
-        else{
-            this.hashfunction = MultiplicationHashFunction;
-        }
+    }
+    hashfunction(key){
+        return key % 101;
     }
     //O(1)
     insert(data){
