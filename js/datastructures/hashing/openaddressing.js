@@ -34,7 +34,7 @@ function OpenAddressing(key,table,length,openAddressProbes=null){
 function DoubleHashing(key,table,i){
     //1st hash is modulo
     //second hash is multiplication
-    // double hashing [h1(k) + i *h2(k) ] mod m
+    // double hashing [h1(k) + i *h2(k) ] mod m ; c2 !=0, as c2 becomes 0 it becomes like linear probing
     h1 = key % 101
     h2 = Math.floor( 101 * (key * 0.621 )% 1);
     return (h1 + i * h2 )  % 101
