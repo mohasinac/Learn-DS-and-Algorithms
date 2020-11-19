@@ -17,10 +17,13 @@
     lg|E| = O(lg|V|)
 */
 class Graph{
-    constructor(vcount){
+    //type 0 means directed graph / di-graph
+    // type 1 means undirected graph
+    constructor(vcount,type=0){
         this.vertices = new Set();
         this.edges = new Array();
-        this.initialize(vcount);      
+        this.initialize(vcount);
+        this.type = type ;      
     }
     initialize(vcount){
         for(let i=0; i< vcount;i++){
@@ -30,9 +33,15 @@ class Graph{
     }
     addEdge(v1,v2){
         this.edges[v1][v2] = 1;
+        if(this.type){
+            this.edges[v2][v1] = 1;
+        }
     }
     removeEdge(v1,v2){
         this.edges[v1][v2] = 0;
+        if(this.type){
+            this.edges[v2][v1] = 0;
+        }
     }
 }
 
