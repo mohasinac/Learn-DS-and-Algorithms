@@ -25,6 +25,8 @@ class Graph {
         this.edges = new Array();
         this.initialize(vCount);
         this.undirected = undirected;
+        
+        this.edgeCount = 0;
     }
 
     constructor(vertices,undirected=0){
@@ -32,6 +34,7 @@ class Graph {
         this.edges = new Array();
         this.initializeMatrix(vertices.length)
         this.undirected = undirected;
+        this.edgeCount = 0;
     }
     initializeVertices(vCount){
         for(let i=0;i<vCount;i++){
@@ -51,6 +54,7 @@ class Graph {
         if (this.undirected) {
             this.edges[v2][v1] = 1;
         }
+        this.edgeCount++;
     }
     //removes an edge between v1 and v2
     removeEdge(v1, v2) {
@@ -58,6 +62,8 @@ class Graph {
         if (this.undirected) {
             this.edges[v2][v1] = 0;
         }
+        
+        this.edgeCount--;
     }
 
     //gets egdges for a vertex v O(n) times
