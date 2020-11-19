@@ -112,6 +112,28 @@ class SinglyLinkedList {
         temp.next = null;
         this.size -= 1;
     }
+    delete(value){
+        if(this.size>0){
+            if(this.size == 1){
+                if(this.head.data == value){
+                    this.head = null;
+                    this.size--;
+                }
+            }
+            else{
+                let temp = this.head;
+                let prev = temp;
+                while(temp && temp.data != value){
+                    prev = temp;
+                    temp = temp.next;
+                }
+                if(temp){
+                    prev.next = temp.next;
+                    this.size--;
+                }
+            }
+        }
+    }
     deleteAt(position) {
         let temp = this.head;
         if (this.size <= 0) {

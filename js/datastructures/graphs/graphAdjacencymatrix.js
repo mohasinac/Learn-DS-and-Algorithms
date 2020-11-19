@@ -79,6 +79,10 @@ class Graph {
     }
 }
 
+module.exports = {
+    Graph
+}
+
 let g = new Graph(4);
 //vertices start from 0 to vCount-1
 g.addEdge(1, 2);
