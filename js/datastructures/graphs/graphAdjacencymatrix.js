@@ -16,41 +16,79 @@
     in connected graphs |E| >= |V| -1
     lg|E| = O(lg|V|)
 */
-class Graph{
+class Graph {
     //type 0 means directed graph / di-graph
     // type 1 means undirected graph
-    constructor(vcount,type=0){
+    constructor(vCount, undirected = 0) {
         this.vertices = new Set();
+        this.vCount = vCount;
         this.edges = new Array();
-        this.initialize(vcount);
-        this.type = type ;      
+        this.initialize(vCount);
+        this.undirected = undirected;
     }
-    initialize(vcount){
-        for(let i=0; i< vcount;i++){
+
+    constructor(vertices,undirected=0){
+        this.vertices = new Set(vertices);
+        this.edges = new Array();
+        this.initializeMatrix(vertices.length)
+        this.undirected = undirected;
+    }
+    initializeVertices(vCount){
+        for(let i=0;i<vCount;i++){
             this.vertices.add(`v${i}`);
+        }
+    }
+    //initialized the adjacency matrix
+    initializeMatrix(vCount) {
+        for (let i = 0; i < vCount; i++) {
             this.edges.push(new Array(4).fill(0));
         }
     }
-    addEdge(v1,v2){
+
+    //add an edge between v1 and v2
+    addEdge(v1, v2) {
         this.edges[v1][v2] = 1;
-        if(this.type){
+        if (this.undirected) {
             this.edges[v2][v1] = 1;
         }
     }
-    removeEdge(v1,v2){
+    //removes an edge between v1 and v2
+    removeEdge(v1, v2) {
         this.edges[v1][v2] = 0;
-        if(this.type){
+        if (this.undirected) {
             this.edges[v2][v1] = 0;
+        }
+    }
+
+    //gets egdges for a vertex v O(n) times
+    getEdges(v) {
+        let coming = [];
+        let going = [];
+        for (let i = 0; i < this.vCount; i++) {
+            if(this.edges[v][i] == 1){
+                going.push([v,i])
+            }
+            if(this.edges[i][v]==1){
+                coming.push([i,v])
+            }
+        }
+        return {
+            coming,
+            going
         }
     }
 }
 
 let g = new Graph(4);
-//vertices start from 0 to vcount-1
-g.addEdge(1,2);
-g.addEdge(2,3);
-g.addEdge(3,3);
+//vertices start from 0 to vCount-1
+g.addEdge(1, 2);
+g.addEdge(2, 3);
+g.addEdge(3, 3);
+g.addEdge(3, 2);
+g.addEdge(0, 3);
 console.log(g.edges);
 console.log(g.vertices)
-g.removeEdge(3,3);
+console.log(g.getEdges(3));
+g.removeEdge(3, 3);
 console.log(g.edges);
+console.log(g.getEdges(3));
