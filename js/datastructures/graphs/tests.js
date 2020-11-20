@@ -16,7 +16,11 @@ console.log(g.getEdges(3));
 console.log(DFS(g));
 console.log(`for 0 `,BFS(g));
 console.log(`for 3 `,BFS(g,3));
-
+console.log(`G is connected `, isConnected(g))
+if(!isConnected(g)){
+    let kC = ConnectedComponents(g);
+    console.log('connected components are', kC.length ,'and they are : ', kC.join() )
+}
 g.removeEdge(3, 3);
 console.log(g.edges);
 console.log(g.getEdges(3));

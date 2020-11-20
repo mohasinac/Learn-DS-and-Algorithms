@@ -10,9 +10,28 @@ function handleEdgeCheck(graph,x,i){
     }
 }
 
+function DFSUtil(graph, vertex, visited,order,t){
+    let x = [vertex,++t]
+    order.push(x);
 
-function DFS(graph){
-    let visited = new Array(graph.vCount).fill
+    for(let i=0;i<graph.vCount;i++)
+    {
+        if ( handleEdgeCheck(graph,vertex,i) && !visited[i]){
+            visited[i] = [i,vertex]
+            t= DFSUtil(graph, i, visited,order,t)
+        }
+    }
+    x.push(++t);
+    return t;
+}
+
+function DFS(graph,vertex = 0){
+    let visited = new Array(graph.vCount).fill(false);
+    let order = [];
+    visited[vertex] = true;
+    let t =0;
+    DFSUtil(graph, vertex, visited,order,t);
+    return {order,visited};
 }
 
 
