@@ -17,7 +17,20 @@ function DFS(graph){
 
 
 /*
+    time complexity
+    for a graph G(V,E)
+    enqueue happens only if not visited
+    number of enqueue and queue is O(|V|)
+    for each edge of a vertex X , we have to list all of them for adjacency
+    therefor O(|E|)
 
+    hence the total time complexity would be O(|V|+|E|)
+    in case of dense graph this become O(|V| + O(|V^2)) = O(|V|^2)
+    space complexity is O(|V|)
+
+    Applications
+    1. Shortest path from node S to another node U in the unweighted graph
+    2. web crawlers
 */
 function BFS(graph,source=0){
     let visited = new Array(graph.vCount).fill(false);
@@ -32,8 +45,8 @@ function BFS(graph,source=0){
         order.push(y);
         for(let i = 0 ; i < graph.vCount; i++){
             if(handleEdgeCheck(graph,x,i) && !visited[i]){
+                visited[i] = [i,x];
                 queue.enqueue([i,y[1]+1]);
-                visited[i] = true;
             }
         }
     }
@@ -42,7 +55,7 @@ function BFS(graph,source=0){
             order.push([i,Number.POSITIVE_INFINITY ])
         }
     }
-    return order;
+    return { order, visited };
 }
 
 module.exports = {
