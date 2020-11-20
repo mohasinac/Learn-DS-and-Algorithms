@@ -1,8 +1,5 @@
 const { CircularQueue } = require('./../queue/circularQueue');
 const { Stack } = require('./../stack/stack');
-function DFS(graph){
-
-}
 
 function handleEdgeCheck(graph,x,i){
     if(graph.undirected){
@@ -12,6 +9,16 @@ function handleEdgeCheck(graph,x,i){
         return graph.edges[x][i]==1;
     }
 }
+
+
+function DFS(graph){
+    let visited = new Array(graph.vCount).fill
+}
+
+
+/*
+
+*/
 function BFS(graph,source=0){
     let visited = new Array(graph.vCount).fill(false);
     let queue = new CircularQueue(graph.vCount);
@@ -28,6 +35,11 @@ function BFS(graph,source=0){
                 queue.enqueue([i,y[1]+1]);
                 visited[i] = true;
             }
+        }
+    }
+    for(let i=0;i<graph.vCount;i++){
+        if(!visited[i]){
+            order.push([i,Number.POSITIVE_INFINITY ])
         }
     }
     return order;

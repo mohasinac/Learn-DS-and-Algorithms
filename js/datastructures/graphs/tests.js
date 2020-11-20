@@ -6,16 +6,16 @@ const  { isConnected , ConnectedComponents, CutVertices} = require('./connectivi
 let g = new Graph(4);
 //vertices start from 0 to vCount-1
 g.addEdge(0, 1);
-g.addEdge(1, 2);
-g.addEdge(2, 3);
-g.addEdge(3, 0);
+//g.addEdge(1, 2);
+g.addEdge(1, 3);
+g.addEdge(3, 2);
 console.log(g.edges);
 console.log(g.vertices)
 console.log(g.getEdges(3));
 
 console.log(DFS(g));
-console.log(BFS(g));
-console.log(BFS(g,3));
+console.log(`for 0 `,BFS(g));
+console.log(`for 3 `,BFS(g,3));
 
 g.removeEdge(3, 3);
 console.log(g.edges);
