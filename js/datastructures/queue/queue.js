@@ -10,7 +10,7 @@ class Queue {
         this.size = 0;
         this.front = -1;
         this.rear = -1;
-        this.queue = new Array(capacity);
+        this.queue = new Array(capacity).fill(null);
     }
 
 
@@ -59,7 +59,7 @@ class Queue {
     }
 
     isEmpty(){
-        return this.size == 0;
+        return this.front == this.rear;
     }
 
 

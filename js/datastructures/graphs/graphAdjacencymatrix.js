@@ -23,19 +23,13 @@ class Graph {
         this.vertices = new Set();
         this.vCount = vCount;
         this.edges = new Array();
-        this.initialize(vCount);
+        this.initializeVertices(vCount);
+        this.initializeMatrix(vCount);
         this.undirected = undirected;
         
         this.edgeCount = 0;
     }
 
-    constructor(vertices,undirected=0){
-        this.vertices = new Set(vertices);
-        this.edges = new Array();
-        this.initializeMatrix(vertices.length)
-        this.undirected = undirected;
-        this.edgeCount = 0;
-    }
     initializeVertices(vCount){
         for(let i=0;i<vCount;i++){
             this.vertices.add(`v${i}`);
@@ -65,7 +59,6 @@ class Graph {
         
         this.edgeCount--;
     }
-
     //gets egdges for a vertex v O(n) times
     getEdges(v) {
         let coming = [];
@@ -88,17 +81,3 @@ class Graph {
 module.exports = {
     Graph
 }
-
-let g = new Graph(4);
-//vertices start from 0 to vCount-1
-g.addEdge(1, 2);
-g.addEdge(2, 3);
-g.addEdge(3, 3);
-g.addEdge(3, 2);
-g.addEdge(0, 3);
-console.log(g.edges);
-console.log(g.vertices)
-console.log(g.getEdges(3));
-g.removeEdge(3, 3);
-console.log(g.edges);
-console.log(g.getEdges(3));

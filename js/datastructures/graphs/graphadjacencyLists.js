@@ -48,12 +48,3 @@ class Graph{
 module.exports = {
     Graph
 }
-
-let g = new Graph(4);
-g.addEdge(1,2);
-g.addEdge(2,3);
-g.addEdge(2,1);
-console.log(g.vertices);
-console.log(g.edges);
-g.removeEdge(2,1);
-console.log(g.edges);

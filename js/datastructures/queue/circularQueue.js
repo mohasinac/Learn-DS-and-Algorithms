@@ -1,20 +1,28 @@
 const { Queue } = require('./queue');
 
-class CircularQueue extends Queue{
+class CircularQueue {
 
     constructor(capacity){
-        super(capacity);
+        this.capacity = capacity;
+        this.size = 0;
+        this.front = -1;
+        this.rear = -1;
+        this.queue = new Array(capacity).fill(null);
     }
 
+    isFull(){
+        return false;
+    }
+
+    isEmpty(){
+        return false;
+    }
 
     enqueue(data){
-        if(this.isFull()){
-            console.log('Circular Queue is Full!')
-            return null;
-        }
-        else if(this.isEmpty()){
+        if(!this.isFull()){
+        if(this.isEmpty()){
             this.rear = (this.rear + 1) % this.capacity;
-            this.front = (this.front + 1) % this.capacity ;
+            this.front = (this.front +1 ) % this.capacity;
             this.queue[this.rear] = data
             this.size++;
         }
@@ -33,8 +41,10 @@ class CircularQueue extends Queue{
         }
         else{
             let result = this.queue[this.front];
+            console.log(this.front,this.queue);
             this.queue[this.front] = null;
             this.front = (this.front + 1) % this.capacity ;
+            console.log(this.front,this.queue);
             this.size--;
             return result;
         }
