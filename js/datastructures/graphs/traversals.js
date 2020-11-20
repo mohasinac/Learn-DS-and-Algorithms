@@ -1,5 +1,4 @@
 const { CircularQueue } = require('./../queue/circularQueue');
-const { Stack } = require('./../stack/stack');
 
 function handleEdgeCheck(graph,x,i){
     if(graph.undirected){
@@ -25,17 +24,32 @@ function DFSUtil(graph, vertex, visited,order,t){
     return t;
 }
 
-function DFS(graph,vertex = 0){
+/*
+
+    DFS is generally used in directed graphs
+*/
+function DFS(graph,vertex){
     let visited = new Array(graph.vCount).fill(false);
     let order = [];
-    visited[vertex] = true;
     let t =0;
-    DFSUtil(graph, vertex, visited,order,t);
+    if(vertex){
+        visited[vertex] = true;
+        DFSUtil(graph, i, visited,order,t);
+    }
+    else{
+        for(let i=0;i<graph.vCount;i++){
+            if(!visited[i]){
+                visited[i] =true;
+                DFSUtil(graph, i, visited,order,t);
+            } 
+        }
+    }
     return {order,visited};
 }
 
 
 /*
+    BFS is used for undirected graph
     time complexity
     for a graph G(V,E)
     enqueue happens only if not visited

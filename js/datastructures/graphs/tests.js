@@ -8,7 +8,7 @@ let g = new Graph(4);
 g.addEdge(0, 1);
 //g.addEdge(1, 2);
 g.addEdge(1, 3);
-g.addEdge(3, 2);
+g.addEdge(2, 3);
 console.log(g.edges);
 console.log(g.vertices)
 console.log(g.getEdges(3));
