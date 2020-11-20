@@ -11,12 +11,14 @@ g.addEdge(3, 3);
 console.log(g.edges);
 console.log(g.vertices)
 console.log(g.getEdges(3));
-g.removeEdge(3, 3);
-console.log(g.edges);
-console.log(g.getEdges(3));
 
 console.log(DFS(g));
 console.log(BFS(g));
+console.log(BFS(g,3));
+
+g.removeEdge(3, 3);
+console.log(g.edges);
+console.log(g.getEdges(3));
 
 let gl = new GraphList(4);
 gl.addEdge(1,2);
