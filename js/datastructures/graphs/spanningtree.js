@@ -18,7 +18,7 @@
 */
 
 /*
-    Prims Algorithm : Greedy
+    Prims Algorithm : Greedily pick vertices based on their key value
     1. each vertex has key and predecessor O(n)
     2. auxillary ds which is a min heap or priority queue to extract the minimum element or to modify a value in the heap
     3. for each vertex make the key as infinity and predecessor as null
@@ -35,7 +35,7 @@ function PrimsAlgorithmSpanTree(graph,weights,root){
 
 
 /*
-    Kruskal's Algorithm : Greedy algorithm O(nlogm) {taken to sort}
+    Kruskal's Algorithm : Greedy algorithm O(nlogm) {taken to sort} greedily pick edges
     1. for each vertex create a set for that vertex i.e. for x vertices we have x sets let these super set be S
     2. sort the edges of the graph in non-decreasing order by weight w
     3. for every edge (u,v) in this sorted list , if( u!=v) and u doesn't belong to same set as v  add this edge to our tree say A and merge sets of {u,v} now S will have S-1 sets
