@@ -18,7 +18,18 @@
 */
 
 /*
-    Prims Algorithm : Greedily pick vertices based on their key value
+    1. E,V spanning tree has V-1 edges
+    2. If you add any edge to spanning tree, it would be cyclic
+    3. many MST of same weight
+    4. if each edge has distinct weight then you will have exactly 1 unique MST
+    5. cycle property - in a cycle , the largest edge has no chance of being in MST
+    6. Cut property - for any cut c in the graph, if weight of an edge in the cut set is strictly smaller than all other weights
+                    in the cut set then this edge must be part of MST
+    7. min-edge-edge : if in a graph we have smallest edge then it belongs to MST
+*/
+
+/*
+    Prims Algorithm : Greedily pick vertices based on their key value ,O(mlogn)
     1. each vertex has key and predecessor O(n)
     2. auxillary ds which is a min heap or priority queue to extract the minimum element or to modify a value in the heap
     3. for each vertex make the key as infinity and predecessor as null
