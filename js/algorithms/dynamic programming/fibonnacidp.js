@@ -10,7 +10,8 @@
     Memoization (Top-down):
     1. array where store fibonnaci of i
     Tabulation (Bottom up):
-    1. 
+    
+    time complexity = O(n)
 */
 
 let fibs = [0,1]
